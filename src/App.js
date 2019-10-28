@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import TodoForm from './components/TodoComponents/TodoForm';
-// import TodoList from './components/TodoComponents/TodoList';
+import TodoList from './components/TodoComponents/TodoList';
 
 
 
@@ -25,13 +25,36 @@ class App extends Component {
     this.setState({
       todo: [...this.state.todo, newTodo]
     });
-  }
+  };
+
+  // will cross out completed item
+  toggleCompleted = id => {
+    this.setState({
+      todo: this.state.todo.map(item => {
+        if (item.id === id) {
+          return {
+            ...item,
+            completed: !item.completed
+          };
+        } else {
+          return item;
+        }
+      })
+    });
+  };
   render() {
     console.log('App is rendering...')
     return (
-      <div>
-        <h2>Todo List</h2>
-        <TodoForm addTodo={this.addTodo} />
+      <div className="App">
+        <div>
+          <h2>Todo List</h2>
+          <TodoForm addTodo={this.addTodo}
+          />
+        </div>
+          <TodoList
+            toggleCompleted={this.toggleCompleted}
+            todo={this.state.todo}
+          />
       </div>
     );
   }
