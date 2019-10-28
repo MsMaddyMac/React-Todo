@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './components/TodoComponents/Todo.css';
 import TodoForm from './components/TodoComponents/TodoForm';
 import TodoList from './components/TodoComponents/TodoList';
 
@@ -42,16 +43,24 @@ class App extends Component {
       })
     });
   };
+
+  clearCompleted = () => {
+    this.setState({
+      todo: this.state.todo.filter(item => item.completed !== true)
+    })
+  }
+
   render() {
     console.log('App is rendering...')
     return (
       <div className="App">
-        <div>
+        <div className="header">
           <h2>Todo List</h2>
           <TodoForm addTodo={this.addTodo}
           />
         </div>
           <TodoList
+            clearCompleted={this.clearCompleted}
             toggleCompleted={this.toggleCompleted}
             todo={this.state.todo}
           />
