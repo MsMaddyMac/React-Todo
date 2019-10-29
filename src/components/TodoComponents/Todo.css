@@ -77,8 +77,8 @@ h1 {
 }
 
 .new-todo {
-    color:black;
-    font-size: 1.2rem;
+    color: #edff00ff;
+    font-size: 1.4rem;
     font-weight: bolder;
 }
 form {
