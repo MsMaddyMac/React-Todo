@@ -5,6 +5,7 @@ import TodoList from './components/TodoComponents/TodoList';
 
 
 
+
 class App extends Component {
   // you will need a place to store your state in this component.
   // Constructor with state
@@ -26,6 +27,7 @@ class App extends Component {
     this.setState({
       todo: [...this.state.todo, newTodo]
     });
+    // this.saveTodos();
   };
 
   // will cross out completed item
@@ -42,28 +44,48 @@ class App extends Component {
         }
       })
     });
+    // this.saveTodos();
   };
 
+  // this will delete the completed item clearing it from the list
   clearCompleted = () => {
     this.setState({
       todo: this.state.todo.filter(item => item.completed !== true)
     })
+    // this.saveTodos();
   }
+
+ // this will save data to local storage
+//  saveTodos = () => {
+//    var str = JSON.stringify(newTodo);
+//    localStorage.setItem("newTodo", str);
+//  }
+
+//  // get data from local storage
+//  getTodos = () => {
+//    var str = localStorage.getItem("todos");
+//    todos = JSON.parse(str);
+//    if (!todos) {
+//      todos = [];
+//    }
+//  }
 
   render() {
     console.log('App is rendering...')
     return (
       <div className="App">
         <div className="header">
-          <h2>Todo List</h2>
-          <TodoForm addTodo={this.addTodo}
-          />
-        </div>
-          <TodoList
-            clearCompleted={this.clearCompleted}
-            toggleCompleted={this.toggleCompleted}
-            todo={this.state.todo}
-          />
+          <h1>Todo List</h1>
+          </div>
+          <div className="main-content">
+            <TodoForm addTodo={this.addTodo}
+            />
+            <TodoList
+              clearCompleted={this.clearCompleted}
+              toggleCompleted={this.toggleCompleted}
+              todo={this.state.todo}
+            />
+          </div>
       </div>
     );
   }

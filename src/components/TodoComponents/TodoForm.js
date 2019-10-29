@@ -27,7 +27,7 @@ class TodoForm extends Component {
         console.log('TodoForm is rendering...');
         return (
             <form onSubmit={this.handleSubmit}>
-                <label htmlFor="item">New Todo</label>
+                <label htmlFor="item" className="new-todo">New Todo</label>
                 <input
                 type="text"
                 name="item"
